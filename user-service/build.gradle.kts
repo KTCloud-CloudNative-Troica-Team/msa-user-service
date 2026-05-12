@@ -7,7 +7,7 @@ plugins {
 dependencies {
     implementation(project(":user"))
 
-    implementation("com.troica.msa:common:0.3.0")
+    implementation("com.troica.msa:common:0.3.1")
 
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
