@@ -1,0 +1,35 @@
+# Base 설정. 환경별 application-{dev,prod}.yaml이 덮어쓴다.
+spring:
+  application:
+    name: user-service
+
+  datasource:
+    url: jdbc:postgresql://${USER_DB_HOST:localhost}:${USER_DB_PORT:7008}/${USER_DB_NAME:user_db}
+    username: ${USER_DB_USERNAME:user-service}
+    password: ${USER_DB_PASSWORD:user-service}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: ${JPA_DDL_AUTO:validate}
+    show-sql: ${JPA_SHOW_SQL:false}
+
+server:
+  port: ${SERVER_PORT:8004}
+
+# gRPC는 본 PoC 단계에선 미노출 (user-service는 REST 전용 + auth-service가 user 라이브러리를
+# in-process로 사용). 향후 service-to-service 직접 호출이 생기면 grpc.server.port=9004 활성화.
+
+management:
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: health, info, prometheus
+      path-mapping:
+        health: healthz
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: true
