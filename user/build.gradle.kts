@@ -13,4 +13,7 @@ dependencies {
     // UserRestController 인터페이스가 REST DTO에 의존 — Web starter 필요
     // 실제 @RestController 어노테이션은 user-service 모듈의 Adapter 클래스에 있음
     implementation("org.springframework.boot:spring-boot-starter-web")
+
+    // R-57: 단위 테스트 — JUnit 5 + AssertJ + Mockito
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
